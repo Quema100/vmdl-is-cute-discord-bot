@@ -38,7 +38,11 @@ client.once(Events.ClientReady, c => {
 client.on(Events.MessageCreate,async msg => {
 
   if (msg.author.id === "799145375855411220") {
-    await msg.react("<:buee7_700:1164794226773602344>")
+    try {
+      await msg.react("<:buee7_700:1164794226773602344>")
+    } catch (error) {
+      console.log("Error: ".error)
+    }
   }
 
   for (const word of triggerWords) {
