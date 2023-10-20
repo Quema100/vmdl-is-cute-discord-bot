@@ -10,7 +10,7 @@ const client = new Client({
     ] 
   });
 
-const triggerWords = ["<@799145375855411220>","픠","쁴","프이","ㅍㅇ","ㄱㅇㅇ","쁘이","ㅃㅇ","ㅍㅇ ㄱㅇㅇ","프이 귀여워..","프이 귀여워...","프이 귀여워","귀여워..","귀여워","귀여워...","프이 ㄱㅇㅇ..","프이 ㄱㅇㅇ...","ㄱㅇㅇ..","ㄱㅇㅇ..."] 
+const triggerWords = [`<@${process.env.vmdl}>`,"픠","쁴","프이","ㅍㅇ","ㄱㅇㅇ","쁘이","ㅃㅇ","ㅍㅇ ㄱㅇㅇ","프이 귀여워..","프이 귀여워...","프이 귀여워","귀여워..","귀여워","귀여워...","프이 ㄱㅇㅇ..","프이 ㄱㅇㅇ...","ㄱㅇㅇ..","ㄱㅇㅇ..."] 
 const NO = ["OOLO","O OLO","ㅇ ㅇㄴㅇ","ㅇㄴㄷ","ㅇㅇㄴㅇ","아닌데","아닌대","응 아니야","응아니야","안귀여워","응 안귀여워"] 
 const wordsArray = ["맞는대",'ㅁㄴㄷ', '맞는데', '응 겁나 귀여워', '응 귀여워', '응 우주 최강 귀요미'];
 const cute = ["역시 우주 최강 귀요미","응애 프이 귀여워...","프이 귀여워..","프이는 역시 귀여워..."]
@@ -37,9 +37,9 @@ client.once(Events.ClientReady, c => {
 
 client.on(Events.MessageCreate,async msg => {
 
-  if (msg.author.id === "799145375855411220") {
+  if (msg.author.id === process.env.vmdl) {
     try {
-      await msg.react("<:buee7_700:1164794226773602344>")
+      await msg.react(process.env.react)
     } catch (error) {
       console.log("Error: ".error)
     }
@@ -67,7 +67,7 @@ client.on(Events.MessageCreate,async msg => {
   }
 
   for (const Noword of NO) {
-    if (msg.content === Noword && msg.author.id === "799145375855411220") {
+    if (msg.content === Noword && msg.author.id === process.env.vmdl) {
       switch(Noword){
         case "응 아니야":
           await msg.channel.send(YesrandomWord)
